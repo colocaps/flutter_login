@@ -294,7 +294,7 @@ class FlutterLogin extends StatefulWidget {
     this.loginProviders = const <LoginProvider>[],
     this.hideForgotPasswordButton = false,
     this.loginAfterSignUp = true,
-    this.footer,
+    this.footerWidget,
     this.hideProvidersTitle = false,
     this.additionalSignupFields,
     this.disableCustomPageTransformer = false,
@@ -397,7 +397,7 @@ class FlutterLogin extends StatefulWidget {
   final bool loginAfterSignUp;
 
   /// Optional footer text for example a copyright notice
-  final String? footer;
+  final Widget? footerWidget;
 
   /// Hide the title above the login providers. If no providers are set this is uneffective
   final bool hideProvidersTitle;
@@ -648,14 +648,7 @@ class _FlutterLoginState extends State<FlutterLogin>
           fontWeight: FontWeight.w300,
         )
         .merge(loginTheme.titleStyle);
-    final footerStyle = theme.textTheme.bodyLarge!
-        .copyWith(
-          color: loginTheme.accentColor ??
-              (isDefaultBlackText
-                  ? Colors.white
-                  : theme.textTheme.displaySmall!.color),
-        )
-        .merge(loginTheme.footerTextStyle);
+
     final textStyle = theme.textTheme.bodyMedium!
         .copyWith(color: blackOrWhite)
         .merge(loginTheme.bodyStyle);
@@ -748,7 +741,6 @@ class _FlutterLoginState extends State<FlutterLogin>
         displaySmall: titleStyle,
         bodyMedium: textStyle,
         titleMedium: textFieldStyle,
-        titleSmall: footerStyle,
         labelLarge: buttonStyle,
       ),
       colorScheme: Theme.of(context)
@@ -775,15 +767,8 @@ class _FlutterLoginState extends State<FlutterLogin>
         widget.passwordValidator ?? FlutterLogin.defaultPasswordValidator;
 
     Widget footerWidget = const SizedBox();
-    if (widget.footer != null) {
-      footerWidget = Padding(
-        padding: EdgeInsets.only(bottom: loginTheme.footerBottomPadding),
-        child: Text(
-          widget.footer!,
-          style: theme.textTheme.titleSmall,
-          textAlign: TextAlign.center,
-        ),
-      );
+    if (widget.footerWidget != null) {
+      footerWidget = widget.footerWidget!;
     }
 
     return MultiProvider(
