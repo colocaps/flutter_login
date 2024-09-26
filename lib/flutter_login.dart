@@ -849,12 +849,6 @@ class _FlutterLoginState extends State<FlutterLogin>
                       top: cardTopPosition - headerHeight - headerMargin,
                       child: _buildHeader(headerHeight, loginTheme),
                     ),
-                    Positioned.fill(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: footerWidget,
-                      ),
-                    ),
                     ...?widget.children,
                   ],
                 ),
@@ -862,6 +856,7 @@ class _FlutterLoginState extends State<FlutterLogin>
             ),
             if (!kReleaseMode && widget.showDebugButtons)
               _buildDebugAnimationButtons(),
+            footerWidget,
           ],
         ),
       ),
