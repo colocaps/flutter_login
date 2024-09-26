@@ -856,7 +856,12 @@ class _FlutterLoginState extends State<FlutterLogin>
             ),
             if (!kReleaseMode && widget.showDebugButtons)
               _buildDebugAnimationButtons(),
-            footerWidget,
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: footerWidget,
+              ),
+            ),
           ],
         ),
       ),
