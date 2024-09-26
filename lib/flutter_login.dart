@@ -799,6 +799,7 @@ class _FlutterLoginState extends State<FlutterLogin>
         ),
       ],
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         body: Stack(
           children: <Widget>[
@@ -809,6 +810,7 @@ class _FlutterLoginState extends State<FlutterLogin>
               ],
             ),
             SingleChildScrollView(
+              padding: const EdgeInsets.only(bottom: 80),
               keyboardDismissBehavior: widget.keyboardDismissBehavior,
               child: Theme(
                 data: theme,
@@ -856,11 +858,11 @@ class _FlutterLoginState extends State<FlutterLogin>
             ),
             if (!kReleaseMode && widget.showDebugButtons)
               _buildDebugAnimationButtons(),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: footerWidget,
-              ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: footerWidget,
             ),
           ],
         ),
